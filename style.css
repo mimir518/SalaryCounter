@@ -20,13 +20,30 @@ body {
   background: radial-gradient(circle at top right, #171332 0%, #080b17 42%, #06080f 100%);
 }
 
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: -30%;
+  z-index: -1;
+  background: conic-gradient(from 0deg, rgba(0, 245, 212, 0.18), rgba(255, 78, 205, 0.16), rgba(18, 212, 255, 0.18), rgba(0, 245, 212, 0.18));
+  filter: blur(48px);
+  animation: punkShift 12s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes punkShift {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1); }
+}
 .app-shell {
   max-width: 640px;
   margin: 0 auto;
   min-height: 100dvh;
   padding: max(10px, env(safe-area-inset-top)) 12px max(16px, env(safe-area-inset-bottom));
   display: grid;
-  gap: 10px;
+  gap: 6px;
 }
 
 .earnings {
@@ -47,10 +64,6 @@ body {
 
 .app-header h1 {
   margin: 0;
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(108, 243, 255, 0.45);
   font-size: 1.28rem;
   color: var(--accent);
   text-shadow: 0 0 16px rgba(0, 245, 212, 0.35);
@@ -235,6 +248,13 @@ button {
   border: 1px solid #2b3d67;
   padding: 8px 12px;
   font-size: 0.85rem;
+}
+
+#openSettings {
+  min-width: 40px;
+  padding: 6px 10px;
+  font-size: 1.3rem;
+  line-height: 1;
 }
 
 .hint { margin: 0; color: var(--muted); font-size: 0.82rem; }
