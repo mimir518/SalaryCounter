@@ -1,0 +1,17 @@
+{
+  "name": "上班回血器",
+  "short_name": "回血器",
+  "description": "根据本地时间自动计算今天和本月已赚金额的轻量工具。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f9ff",
+  "theme_color": "#f7f9ff",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
