@@ -29,7 +29,6 @@ body {
   gap: 10px;
 }
 
-.app-header,
 .earnings {
   background: linear-gradient(145deg, rgba(16, 24, 46, 0.94), rgba(12, 19, 38, 0.94));
   border: 1px solid var(--border);
@@ -40,20 +39,25 @@ body {
 
 .app-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
+  padding: 0;
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 1.35rem;
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(108, 243, 255, 0.45);
+  font-size: 1.28rem;
   color: var(--accent);
   text-shadow: 0 0 16px rgba(0, 245, 212, 0.35);
 }
 
 .app-header p {
-  margin: 6px 0 0;
+  margin: 5px 0 0;
   color: var(--muted);
   font-size: 0.85rem;
 }
