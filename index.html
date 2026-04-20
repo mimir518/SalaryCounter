@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#f7f9ff" />
+    <meta name="theme-color" content="#f4f7f2" />
     <meta name="description" content="上班回血器：根据本地时间自动计算今天和本月已赚金额。" />
     <title>上班回血器</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
@@ -14,14 +14,15 @@
   <body>
     <main class="app-shell">
       <header class="app-header">
-        <h1>上班回血器</h1>
-        <p>打开即自动结算，给打工人一点温柔回血。</p>
+        <div>
+          <h1>上班回血器</h1>
+          <p>打开即自动结算，给打工人一点温柔回血。</p>
+        </div>
+        <button id="openSettings" class="ghost-btn" type="button">设置</button>
       </header>
 
       <section class="earnings" aria-live="polite">
-        <p class="status-line">
-          当前状态：<strong id="statusText">--</strong>
-        </p>
+        <p class="status-line">当前状态：<strong id="statusText">--</strong></p>
         <div class="today-card">
           <p class="label">今天已赚</p>
           <p class="value" id="todayValue">¥0.00</p>
@@ -41,49 +42,57 @@
           </article>
         </div>
       </section>
-
-      <section class="settings">
-        <h2>设置</h2>
-        <form id="settingsForm" novalidate>
-          <label>
-            月到手工资（元）
-            <input id="monthlySalary" name="monthlySalary" type="number" min="0" step="100" required />
-          </label>
-
-          <label>
-            每月工作天数
-            <input id="workDaysPerMonth" name="workDaysPerMonth" type="number" min="1" max="31" step="1" value="21" />
-          </label>
-
-          <div class="time-grid">
-            <label>
-              上班时间
-              <input id="workStart" name="workStart" type="time" value="09:00" />
-            </label>
-            <label>
-              下班时间
-              <input id="workEnd" name="workEnd" type="time" value="18:00" />
-            </label>
-            <label>
-              午休开始
-              <input id="lunchStart" name="lunchStart" type="time" value="12:00" />
-            </label>
-            <label>
-              午休结束
-              <input id="lunchEnd" name="lunchEnd" type="time" value="13:00" />
-            </label>
-          </div>
-
-          <fieldset class="weekday-fieldset">
-            <legend>工作日选择</legend>
-            <div class="weekday-options" id="weekdayOptions"></div>
-          </fieldset>
-
-          <button type="submit">保存设置</button>
-          <p class="hint" id="saveHint">设置会自动保存在本地浏览器。</p>
-        </form>
-      </section>
     </main>
+
+    <dialog id="settingsModal" class="settings-modal">
+      <form id="settingsForm" method="dialog" novalidate>
+        <div class="modal-header">
+          <h2>设置</h2>
+          <button type="button" id="closeSettings" class="ghost-btn">关闭</button>
+        </div>
+
+        <label>
+          月到手工资（元）
+          <input id="monthlySalary" name="monthlySalary" type="number" min="0" step="100" required />
+        </label>
+
+        <label>
+          当月工作天数
+          <div class="inline-input">
+            <input id="workDaysPerMonth" name="workDaysPerMonth" type="number" min="1" max="31" step="1" />
+            <button type="button" id="recalcWorkDays" class="secondary-btn">自动计算</button>
+          </div>
+          <small id="workdayHint">默认按中国节假日规则估算，可手动修改。</small>
+        </label>
+
+        <div class="time-grid">
+          <label>
+            上班时间
+            <input id="workStart" name="workStart" type="time" value="09:00" />
+          </label>
+          <label>
+            下班时间
+            <input id="workEnd" name="workEnd" type="time" value="18:00" />
+          </label>
+          <label>
+            午休开始
+            <input id="lunchStart" name="lunchStart" type="time" value="12:00" />
+          </label>
+          <label>
+            午休结束
+            <input id="lunchEnd" name="lunchEnd" type="time" value="13:00" />
+          </label>
+        </div>
+
+        <fieldset class="weekday-fieldset">
+          <legend>工作日选择</legend>
+          <div class="weekday-options" id="weekdayOptions"></div>
+        </fieldset>
+
+        <button type="submit">保存设置</button>
+        <p class="hint" id="saveHint">设置会自动保存在本地浏览器。</p>
+      </form>
+    </dialog>
 
     <script src="app.js"></script>
   </body>

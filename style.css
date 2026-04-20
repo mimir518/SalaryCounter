@@ -1,14 +1,14 @@
 :root {
-  --bg: #f7f9ff;
+  --bg: #f4f7f2;
   --panel: #ffffff;
-  --text: #283047;
-  --muted: #64708c;
-  --accent: #6f7df4;
-  --accent-soft: #e9edff;
-  --border: #dce1f3;
-  --ok: #2e8b71;
+  --text: #253429;
+  --muted: #627267;
+  --accent: #5ea16f;
+  --accent-soft: #edf7ef;
+  --border: #d9e5db;
+  --ok: #2f7d54;
   --radius: 18px;
-  --shadow: 0 10px 30px rgba(111, 125, 244, 0.12);
+  --shadow: 0 10px 30px rgba(94, 161, 111, 0.12);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Helvetica Neue', sans-serif;
 }
 
@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  background: linear-gradient(180deg, #f8f9ff 0%, #eef2ff 100%);
+  background: linear-gradient(180deg, #f8fbf7 0%, #edf4ee 100%);
   color: var(--text);
 }
 
@@ -32,13 +32,19 @@ body {
 }
 
 .app-header,
-.earnings,
-.settings {
+.earnings {
   background: var(--panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .app-header h1 {
@@ -102,14 +108,37 @@ body {
   font-weight: 650;
 }
 
-.settings h2 {
-  margin: 0 0 12px;
-  font-size: 1.1rem;
+.settings-modal {
+  width: min(92vw, 560px);
+  border: none;
+  border-radius: 18px;
+  padding: 0;
+  background: transparent;
 }
 
-form {
+.settings-modal::backdrop {
+  background: rgba(22, 31, 25, 0.35);
+}
+
+#settingsForm {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
   display: grid;
   gap: 12px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
 }
 
 label,
@@ -126,7 +155,28 @@ input {
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 16px;
-  background: #fcfdff;
+  background: #fcfefc;
+}
+
+.inline-input {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.inline-input input {
+  margin-top: 0;
+}
+
+.inline-input .secondary-btn {
+  white-space: nowrap;
+}
+
+small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .time-grid {
@@ -171,6 +221,15 @@ button {
   border-radius: 999px;
   font-size: 1rem;
   font-weight: 700;
+}
+
+.ghost-btn,
+.secondary-btn {
+  background: #f2f7f2;
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  font-size: 0.88rem;
 }
 
 .hint {
