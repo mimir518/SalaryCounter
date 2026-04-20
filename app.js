@@ -10,7 +10,6 @@ const WEEKDAYS = [
   { value: 0, label: '周日' },
 ];
 
-// 内置中国节假日（含调休工作日）示例数据；若公司安排不同，允许用户手动改。
 const CHINA_HOLIDAY_CALENDAR = {
   2026: {
     holidays: [
@@ -46,7 +45,6 @@ const statusText = document.getElementById('statusText');
 const todayValue = document.getElementById('todayValue');
 const monthValue = document.getElementById('monthValue');
 const hourlyValue = document.getElementById('hourlyValue');
-const perSecondValue = document.getElementById('perSecondValue');
 const saveHint = document.getElementById('saveHint');
 const workdayHint = document.getElementById('workdayHint');
 
@@ -253,17 +251,12 @@ function formatCurrency(number) {
   }).format(number);
 }
 
-function formatPerSecond(number) {
-  return `¥${number.toFixed(4)} / s`;
-}
-
 function calculateAndRender(settings) {
   const now = new Date();
   const paidMinutesPerDay = getDailyPaidMinutes(settings);
   const hourlyRate = paidMinutesPerDay > 0
     ? settings.monthlySalary / settings.workDaysPerMonth / (paidMinutesPerDay / 60)
     : 0;
-  const perSecondRate = hourlyRate / 3600;
 
   const todayMinutes = getPaidMinutesInDayUntil(now, settings);
   const monthMinutes = getMonthPaidMinutes(now, settings);
@@ -271,12 +264,10 @@ function calculateAndRender(settings) {
   const todayIncome = (todayMinutes / 60) * hourlyRate;
   const monthIncome = (monthMinutes / 60) * hourlyRate;
 
-  const status = getStatus(now, settings);
-  statusText.textContent = status;
+  statusText.textContent = getStatus(now, settings);
   todayValue.textContent = formatCurrency(todayIncome);
   monthValue.textContent = formatCurrency(monthIncome);
   hourlyValue.textContent = `¥${hourlyRate.toFixed(2)} / h`;
-  perSecondValue.textContent = status === '上班中' ? formatPerSecond(perSecondRate) : formatPerSecond(0);
 }
 
 let activeSettings = loadSettings();
@@ -322,6 +313,7 @@ form.addEventListener('submit', (event) => {
   settingsModal.close();
 });
 
+// 每秒重算一次，因此处于“上班中”时，今天已赚会按秒滚动增长。
 setInterval(() => {
   calculateAndRender(activeSettings);
 }, 1000);

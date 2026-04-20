@@ -4,8 +4,8 @@
   "description": "根据本地时间自动计算今天和本月已赚金额的轻量工具。",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f4f7f2",
-  "theme_color": "#f4f7f2",
+  "background_color": "#0b0f1a",
+  "theme_color": "#0b0f1a",
   "lang": "zh-CN",
   "icons": [
     {
