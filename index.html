@@ -14,47 +14,47 @@
       <section class="receipt" aria-label="上班回血器主界面">
         <header class="receipt-top">
           <div>
-            <h1>上班回血器</h1>
-            <p class="subtitle">打工人今日回血记录</p>
+            <h1 class="ink-rough">上班回血器 <span class="spark">✦</span></h1>
+            <p class="subtitle ink-rough">打工人今日也在努力回血中！</p>
           </div>
-          <button id="open-settings" class="ticket-btn" type="button">回血规则</button>
+          <button id="open-settings" class="ticket-btn ink-rough" type="button">回血规则</button>
         </header>
 
         <hr class="dash" />
 
         <section class="today-section">
-          <p class="label">〈 今日已赚 〉</p>
-          <p id="today-earned" class="amount">￥0.00</p>
-          <p id="status-text" class="status">还没开赚，等上班时间开始回血</p>
+          <p class="label ink-rough">〈 今日已赚 〉</p>
+          <p class="amount ink-rough"><span class="currency">￥</span><span id="amount-int">0</span><span id="amount-dec">.00</span></p>
+          <p id="status-text" class="status ink-rough">还没开赚，等上班时间开始回血</p>
         </section>
 
         <hr class="dash" />
 
         <section class="progress-section">
           <div class="line-between">
-            <p id="today-progress-text" class="progress-title">今日进度 0%</p>
-            <p id="work-hours-text" class="work-hours">09:00 上班 — 18:00 下班</p>
+            <p id="today-progress-text" class="progress-title ink-rough">今日进度 0%</p>
+            <p id="work-hours-text" class="work-hours ink-rough">09:00 上班 — 18:00 下班</p>
           </div>
           <div id="progress-blocks" class="blocks" aria-hidden="true"></div>
         </section>
 
         <section class="card-row">
           <article class="mini-card">
-            <h2>本月累计</h2>
-            <p id="month-earned" class="mini-value">￥0.00</p>
-            <p id="month-days" class="mini-note">已计入 0 个工作日</p>
+            <h2 class="ink-rough"><span class="icon">◍</span> 本月累计</h2>
+            <p id="month-earned" class="mini-value ink-rough">￥0.00</p>
+            <p id="month-days" class="mini-note ink-rough">已计入 0 个工作日</p>
           </article>
           <article class="mini-card">
-            <h2>本周打工进度</h2>
-            <p id="week-progress" class="mini-value">0%</p>
-            <p class="mini-note">离周末又近了一点</p>
+            <h2 class="ink-rough"><span class="icon">⚑</span> 本周打工进度</h2>
+            <p id="week-progress" class="mini-value ink-rough">0%</p>
+            <p class="mini-note ink-rough">离周末又近了一点</p>
           </article>
         </section>
 
         <hr class="dash" />
 
         <section class="quote-section">
-          <p id="daily-quote" class="quote">今天也不是白干。</p>
+          <p id="daily-quote" class="quote ink-rough">今天也不是白干。</p>
         </section>
 
         <div class="barcode" aria-hidden="true"></div>

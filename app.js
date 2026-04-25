@@ -51,7 +51,7 @@ let calendarCursor = new Date();
 
 const $ = (s) => document.querySelector(s);
 const els = {
-  todayEarned: $("#today-earned"), status: $("#status-text"),
+  amountInt: $("#amount-int"), amountDec: $("#amount-dec"), status: $("#status-text"),
   todayProgressText: $("#today-progress-text"), workHoursText: $("#work-hours-text"),
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
   monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
@@ -80,6 +80,11 @@ function formatYMD(date) {
 }
 function daysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
 function money(v) { return `￥${Number(v || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`; }
+function moneyParts(v) {
+  const text = Number(v || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const [intPart, decPart = "00"] = text.split(".");
+  return { intPart, decPart };
+}
 
 function isWeekend(date) { const d = date.getDay(); return d === 0 || d === 6; }
 function dayTypeByStandard(date) {
@@ -205,7 +210,9 @@ function renderProgressBlocks(pct) {
 function renderMain() {
   const now = new Date();
   const data = calculate(now);
-  els.todayEarned.textContent = money(data.todayEarned);
+  const today = moneyParts(data.todayEarned);
+  els.amountInt.textContent = today.intPart;
+  els.amountDec.textContent = `.${today.decPart}`;
   els.status.textContent = data.status;
   els.todayProgressText.textContent = `今日进度 ${Math.round(data.todayPct * 100)}%`;
   els.workHoursText.textContent = `${settings.startTime} 上班 — ${settings.endTime} 下班`;

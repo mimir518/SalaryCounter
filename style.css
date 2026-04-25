@@ -2,9 +2,15 @@
   --bg: #171717;
   --paper: #f0eadf;
   --ink: #171717;
-  --muted: #494949;
   --line: #2a2a2a;
-  --soft: #c8c3b9;
+
+  /* 统一字体尺⼨变量：后续你要微调只改这里 */
+  --font-status: 1.15rem;
+  --font-label: 1.65rem;
+  --font-progress-title: var(--font-status);
+  --font-card-title: var(--font-status);
+  --font-card-note: var(--font-status);
+  --font-work-hours: var(--font-status);
 }
 
 * { box-sizing: border-box; }
@@ -42,12 +48,20 @@ body {
   height: 10px;
   background: repeating-linear-gradient(-45deg, transparent 0 8px, var(--paper) 8px 16px);
 }
-
 .receipt::before { top: -10px; }
 .receipt::after { bottom: -10px; transform: rotate(180deg); }
 
+.ink-rough {
+  text-shadow:
+    -0.45px 0 rgba(0, 0, 0, 0.3),
+    0.45px 0 rgba(0, 0, 0, 0.26),
+    0 0 0.7px rgba(0, 0, 0, 0.25);
+  filter: contrast(1.03) saturate(0.95);
+}
+
 .receipt-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
-h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; }
+h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
+.spark { font-size: 1rem; vertical-align: top; margin-left: 2px; }
 .subtitle { margin: 6px 0 0; font-size: 1.05rem; color: #282828; }
 
 .ticket-btn {
@@ -60,30 +74,52 @@ h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; }
 }
 
 .dash { border: none; border-top: 2px dashed #3b3b3b; margin: 16px 0; }
-.label { text-align: center; font-size: 2rem; margin: 4px 0; }
+.label { text-align: center; font-size: var(--font-label); margin: 4px 0; }
+
 .amount {
   text-align: center;
   margin: 4px 0;
   font-weight: 900;
-  font-size: clamp(2.8rem, 14vw, 6rem);
+  font-size: clamp(2.6rem, 12.5vw, 5.6rem);
   letter-spacing: 1px;
   font-family: "Courier New", "Consolas", monospace;
+  line-height: 1;
 }
-.status { text-align: center; margin: 8px 0 0; font-size: 1.3rem; font-weight: 700; }
+.currency {
+  font-size: 0.42em;
+  display: inline-block;
+  margin-right: 0.1em;
+  vertical-align: baseline;
+}
+#amount-int { font-size: 1em; }
+#amount-dec {
+  font-size: 0.56em;
+  margin-left: 0.02em;
+  vertical-align: baseline;
+}
 
+.status { text-align: center; margin: 8px 0 0; font-size: var(--font-status); font-weight: 700; }
 .line-between { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
-.progress-title { margin: 0; font-size: 2rem; font-weight: 800; }
-.work-hours { margin: 0; font-size: 1.2rem; color: #2f2f2f; }
+.progress-title { margin: 0; font-size: var(--font-progress-title); font-weight: 800; }
+.work-hours { margin: 0; font-size: var(--font-work-hours); color: #2f2f2f; }
 
 .blocks { margin-top: 10px; display: grid; gap: 4px; grid-template-columns: repeat(24, minmax(0, 1fr)); }
 .block { height: 20px; border-radius: 2px; background: #d6d1c7; }
 .block.filled { background: #111; }
 
-.card-row { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.mini-card { border: 2px dashed #4a4a4a; border-radius: 14px; padding: 10px; }
-.mini-card h2 { margin: 0; font-size: 1.5rem; }
+.card-row { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: stretch; }
+.mini-card {
+  border: 2px dashed #4a4a4a;
+  border-radius: 14px;
+  padding: 12px;
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+}
+.mini-card h2 { margin: 0; font-size: var(--font-card-title); display: flex; align-items: center; gap: 6px; }
+.icon { font-size: .9em; }
 .mini-value { margin: 8px 0; font-size: 2.2rem; font-family: "Courier New", monospace; font-weight: 900; }
-.mini-note { margin: 0; color: #2f2f2f; font-size: 1.1rem; }
+.mini-note { margin: auto 0 0; color: #2f2f2f; font-size: var(--font-card-note); }
 .quote { text-align: center; font-size: 1.9rem; margin: 4px 0 6px; font-weight: 700; }
 
 .barcode {
@@ -182,9 +218,7 @@ input[type="number"], input[type="time"] {
 @media (max-width: 390px) {
   h1 { font-size: 1.8rem; }
   .subtitle { font-size: 0.94rem; }
-  .progress-title { font-size: 1.5rem; }
-  .work-hours { font-size: 0.95rem; }
-  .mini-card h2 { font-size: 1.1rem; }
+  .work-hours, .progress-title, .status, .mini-card h2, .mini-note { font-size: 1rem; }
   .mini-value { font-size: 1.9rem; }
   .quote { font-size: 1.4rem; }
 }
