@@ -1,17 +1,4 @@
 const STORAGE_KEY = "salaryCounter.v1";
-const QUOTES = [
-  "今天也不是白干。",
-  "钱在走，心就先别碎。",
-  "不是热爱上班，是热爱到账。",
-  "每一秒都算数。",
-  "离周末又近了一点。",
-  "今日回血中，请勿打扰。",
-  "工位可以困，钱包不能停。",
-  "再忍一下，周末在路上。",
-  "上班是过程，到手才是重点。",
-  "打卡不是目的，回血才是。",
-];
-
 const CN_HOLIDAY_DATA = {
   "2025": {
     holidays: [
@@ -43,7 +30,6 @@ const defaultSettings = {
   startTime: "09:00",
   endTime: "18:00",
   autoHolidayCN: true,
-  customQuotes: [],
   manualSchedule: {},
 };
 
@@ -56,11 +42,10 @@ const els = {
   todayProgressPercent: $("#today-progress-percent"), workHoursText: $("#work-hours-text"),
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
   monthAmount: $("#month-amount"),
-  monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
+  monthDays: $("#month-days"), weekProgress: $("#week-progress"),
   weekNote: $("#week-note"),
   modal: $("#settings-modal"), salaryInput: $("#salary-input"), holidayToggle: $("#holiday-toggle"),
   startTime: $("#start-time"), endTime: $("#end-time"), holidaySection: $("#holiday-section"),
-  quotesInput: $("#quotes-input"),
   manualSection: $("#manual-section"), calendar: $("#calendar"), calendarTitle: $("#calendar-title"), manualCount: $("#manual-count"),
 };
 
@@ -226,9 +211,6 @@ function renderMain() {
   els.weekNote.textContent = data.weekPct >= 1 ? "终于可以好好休息啦！" : "离周末又近了一点";
   renderProgressBlocks(data.todayPct);
 
-  const day = now.getDate();
-  const activeQuotes = Array.isArray(settings.customQuotes) && settings.customQuotes.length > 0 ? settings.customQuotes : QUOTES;
-  els.dailyQuote.textContent = activeQuotes[day % activeQuotes.length];
 }
 
 function renderForm() {
@@ -236,7 +218,6 @@ function renderForm() {
   els.holidayToggle.checked = settings.autoHolidayCN;
   els.startTime.value = settings.startTime;
   els.endTime.value = settings.endTime;
-  els.quotesInput.value = Array.isArray(settings.customQuotes) ? settings.customQuotes.join("\n") : "";
   document.querySelector(`input[name="mode"][value="${settings.mode}"]`).checked = true;
   els.manualSection.classList.toggle("hidden", settings.mode !== "manual");
   els.holidaySection.classList.toggle("hidden", settings.mode !== "standard");
@@ -283,10 +264,6 @@ function bindEvents() {
     settings.autoHolidayCN = els.holidayToggle.checked;
     settings.startTime = els.startTime.value || "09:00";
     settings.endTime = els.endTime.value || "18:00";
-    settings.customQuotes = (els.quotesInput.value || "")
-      .split("\n")
-      .map((s) => s.trim())
-      .filter(Boolean);
     settings.mode = document.querySelector('input[name="mode"]:checked').value;
     saveSettings();
     els.modal.classList.add("hidden");

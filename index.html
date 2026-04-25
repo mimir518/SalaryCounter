@@ -78,12 +78,6 @@
 
         <hr class="dash" />
 
-        <section class="quote-section">
-          <p id="daily-quote" class="quote ink-rough">今天也不是白干。</p>
-          <p class="quote-sub ink-rough">· 打工人，打工魂，打工都是人上人 ·</p>
-        </section>
-        <hr class="dash" />
-
         <div class="barcode" aria-hidden="true"></div>
         <p class="barcode-text">WORK HARD · EARN MONEY · FEEL BETTER</p>
       </section>
@@ -127,18 +121,11 @@
 
         <div class="form-section">
           <h3>3. 时间设置</h3>
-          <div class="time-grid">
-            <label>上班时间<input id="start-time" type="time" value="09:00" /></label>
-            <label>下班时间<input id="end-time" type="time" value="18:00" /></label>
+          <div class="time-row">
+            <label class="time-item">上班时间<input id="start-time" type="time" value="09:00" /></label>
+            <span class="time-divider">-</span>
+            <label class="time-item">下班时间<input id="end-time" type="time" value="18:00" /></label>
           </div>
-          <p class="tip">不设置午休，计薪时长 = 下班时间 - 上班时间</p>
-        </div>
-
-        <div class="form-section">
-          <h3>每日文案</h3>
-          <label for="quotes-input">上班中每日轮换句子（每行一句）</label>
-          <textarea id="quotes-input" rows="5" placeholder="今天也不是白干。"></textarea>
-          <p class="tip">会按日期稳定轮换，留空时使用默认文案。</p>
         </div>
 
         <div id="manual-section" class="form-section hidden">
