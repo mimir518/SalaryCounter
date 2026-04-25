@@ -1,4 +1,18 @@
 const STORAGE_KEY = "salaryCounter.v1";
+const QUOTE_CACHE_KEY = "salaryCounter.quoteCache.v1";
+const QUOTE_SOURCE_URL_KEY = "salaryCounter.quoteSourceUrl";
+const LOCAL_QUOTES = [
+  "今日回血中，请勿打扰。",
+  "钱在走，心就先别碎。",
+  "不是热爱上班，是热爱到账。",
+  "每一秒都算数。",
+  "离周末又近了一点。",
+  "工位可以困，钱包不能停。",
+  "再忍一下，周末在路上。",
+  "上班是过程，到手才是重点。",
+  "打卡不是目的，回血才是。",
+];
+let quotePool = [...LOCAL_QUOTES];
 const CN_HOLIDAY_DATA = {
   "2025": {
     holidays: [
@@ -42,7 +56,7 @@ const els = {
   todayProgressPercent: $("#today-progress-percent"), workHoursText: $("#work-hours-text"),
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
   monthAmount: $("#month-amount"),
-  monthDays: $("#month-days"), weekProgress: $("#week-progress"),
+  monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
   weekNote: $("#week-note"),
   modal: $("#settings-modal"), salaryInput: $("#salary-input"), holidayToggle: $("#holiday-toggle"),
   startTime: $("#start-time"), endTime: $("#end-time"), holidaySection: $("#holiday-section"),
@@ -59,6 +73,31 @@ function loadSettings() {
   }
 }
 function saveSettings() { localStorage.setItem(STORAGE_KEY, JSON.stringify(settings)); }
+function loadQuoteCache() {
+  try {
+    const raw = JSON.parse(localStorage.getItem(QUOTE_CACHE_KEY) || "[]");
+    if (Array.isArray(raw) && raw.length) quotePool = raw;
+  } catch {}
+}
+function getQuoteSourceUrl() {
+  if (window.RECOVERY_QUOTES_URL) return String(window.RECOVERY_QUOTES_URL);
+  const cached = localStorage.getItem(QUOTE_SOURCE_URL_KEY);
+  return cached || "";
+}
+async function tryLoadRemoteQuotes() {
+  const url = getQuoteSourceUrl();
+  if (!url) return;
+  try {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) return;
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : data.quotes;
+    if (Array.isArray(list) && list.length) {
+      quotePool = list.map((s) => String(s).trim()).filter(Boolean);
+      if (quotePool.length) localStorage.setItem(QUOTE_CACHE_KEY, JSON.stringify(quotePool));
+    }
+  } catch {}
+}
 
 function parseHM(hm) { const [h, m] = hm.split(":").map(Number); return h * 3600 + m * 60; }
 function formatYMD(date) {
@@ -210,6 +249,11 @@ function renderMain() {
   els.weekProgress.textContent = `${Math.round(data.weekPct * 100)}%`;
   els.weekNote.textContent = data.weekPct >= 1 ? "终于可以好好休息啦！" : "离周末又近了一点";
   renderProgressBlocks(data.todayPct);
+  if (els.dailyQuote) {
+    const day = now.getDate();
+    const source = quotePool.length ? quotePool : LOCAL_QUOTES;
+    els.dailyQuote.textContent = source[day % source.length];
+  }
 
 }
 
@@ -310,6 +354,8 @@ function registerSW() {
 }
 
 function init() {
+  loadQuoteCache();
+  tryLoadRemoteQuotes().then(() => renderMain());
   bindEvents();
   renderMain();
   setInterval(renderMain, 1000);
