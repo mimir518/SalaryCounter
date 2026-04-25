@@ -5,8 +5,8 @@
   --line: #2a2a2a;
 
   /* 统一字体尺⼨变量：后续你要微调只改这里 */
-  --font-status: 1.15rem;
-  --font-label: 1.65rem;
+  --font-status: 1rem;
+  --font-label: 1.4rem;
   --font-progress-title: var(--font-status);
   --font-card-title: var(--font-status);
   --font-card-note: var(--font-status);
@@ -60,15 +60,15 @@ body {
 }
 
 .receipt-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
-h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
+h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .spark { font-size: 1rem; vertical-align: top; margin-left: 2px; }
-.subtitle { margin: 6px 0 0; font-size: 1.05rem; color: #282828; }
+.subtitle { margin: 6px 0 0; font-size: .95rem; color: #282828; }
 
 .ticket-btn {
   border: 2px dashed var(--line);
   background: transparent;
   color: var(--ink);
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   padding: 9px 10px;
   border-radius: 10px;
 }
@@ -80,7 +80,7 @@ h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
   text-align: center;
   margin: 4px 0;
   font-weight: 900;
-  font-size: clamp(2.6rem, 12.5vw, 5.6rem);
+  font-size: clamp(3.1rem, 15vw, 6.4rem);
   letter-spacing: 1px;
   font-family: "Courier New", "Consolas", monospace;
   line-height: 1;
@@ -101,13 +101,19 @@ h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
 .status { text-align: center; margin: 8px 0 0; font-size: var(--font-status); font-weight: 700; }
 .line-between { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
 .progress-title { margin: 0; font-size: var(--font-progress-title); font-weight: 800; }
-.work-hours { margin: 0; font-size: var(--font-work-hours); color: #2f2f2f; }
+.work-hours { margin: 0; font-size: .95rem; color: #2f2f2f; }
 
 .blocks { margin-top: 10px; display: grid; gap: 4px; grid-template-columns: repeat(24, minmax(0, 1fr)); }
 .block { height: 20px; border-radius: 2px; background: #d6d1c7; }
 .block.filled { background: #111; }
 
-.card-row { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: stretch; }
+.card-row {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
 .mini-card {
   border: 2px dashed #4a4a4a;
   border-radius: 14px;
@@ -116,6 +122,8 @@ h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  width: 100%;
+  min-width: 0;
 }
 .mini-card h2 {
   margin: 0;
@@ -139,7 +147,19 @@ h1 { margin: 0; font-size: 2.2rem; letter-spacing: 2px; font-weight: 900; }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.mini-value { margin: 8px 0; font-size: 2.2rem; font-family: "Courier New", monospace; font-weight: 900; }
+.mini-value {
+  margin: 8px 0;
+  font-size: 1.9rem;
+  line-height: 1;
+  font-family: "Courier New", monospace;
+  font-weight: 900;
+  white-space: nowrap;
+}
+.mini-currency {
+  font-size: 0.35em;
+  vertical-align: baseline;
+  margin-right: 0.08em;
+}
 .mini-note { margin: auto 0 0; color: #2f2f2f; font-size: var(--font-card-note); }
 .quote {
   text-align: center;
@@ -259,8 +279,8 @@ textarea {
 
 @media (max-width: 390px) {
   h1 { font-size: 1.8rem; }
-  .subtitle { font-size: 0.94rem; }
+  .subtitle { font-size: 0.88rem; }
   .work-hours, .progress-title, .status, .mini-card h2, .mini-note { font-size: 1rem; }
-  .mini-value { font-size: 1.9rem; }
+  .mini-value { font-size: 1.7rem; }
   .quote, .quote-sub { font-size: 1rem; }
 }

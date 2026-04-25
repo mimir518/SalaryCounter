@@ -55,6 +55,7 @@ const els = {
   amountInt: $("#amount-int"), amountDec: $("#amount-dec"), status: $("#status-text"),
   todayProgressText: $("#today-progress-text"), workHoursText: $("#work-hours-text"),
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
+  monthAmount: $("#month-amount"),
   monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
   modal: $("#settings-modal"), salaryInput: $("#salary-input"), holidayToggle: $("#holiday-toggle"),
   startTime: $("#start-time"), endTime: $("#end-time"), holidaySection: $("#holiday-section"),
@@ -218,7 +219,7 @@ function renderMain() {
   els.status.textContent = data.status;
   els.todayProgressText.textContent = `今日进度 ${Math.round(data.todayPct * 100)}%`;
   els.workHoursText.textContent = `${settings.startTime} 上班 — ${settings.endTime} 下班`;
-  els.monthEarned.textContent = money(data.monthTotal);
+  els.monthAmount.textContent = Number(data.monthTotal || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   els.monthDays.textContent = `已计入 ${data.monthCompletedDays} 个工作日`;
   els.weekProgress.textContent = `${Math.round(data.weekPct * 100)}%`;
   renderProgressBlocks(data.todayPct);
