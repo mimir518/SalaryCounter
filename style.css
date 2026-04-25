@@ -26,6 +26,11 @@ body {
   font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
   background: radial-gradient(circle at top, #2a2a2a, var(--bg));
   color: var(--ink);
+  overflow-x: hidden;
+}
+body.modal-open {
+  overflow: hidden;
+  touch-action: none;
 }
 
 .app-shell {
@@ -229,6 +234,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   align-items: flex-end;
   justify-content: center;
   padding: 0;
+  overflow-x: hidden;
 }
 .hidden { display: none !important; }
 
@@ -244,6 +250,8 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   border: 1px solid #d2ccc2;
   background-image: radial-gradient(rgba(0,0,0,.028) 1px, transparent 1px);
   background-size: 5px 5px;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
 .sheet::before,
 .sheet::after {
@@ -339,25 +347,36 @@ textarea {
 .switch-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .time-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr);
   align-items: end;
-  gap: 8px;
+  gap: 5px;
 }
 .time-item input {
-  height: 42px;
+  height: 40px;
   text-align: center;
-  font-size: 1.05rem;
+  font-size: .98rem;
+  padding: 6px 4px;
 }
 .time-divider {
-  font-size: 1.8rem;
+  font-size: 1.35rem;
   line-height: 1;
-  align-self: center;
+  text-align: center;
+  align-self: end;
   color: #1a1a1a;
-  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .calendar-nav, .calendar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
 .calendar-nav { justify-content: space-between; }
+.weekday-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 6px;
+  color: #3a3a3a;
+  font-size: .85rem;
+  text-align: center;
+}
 .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
 .day-cell {
   border: 1px dashed #555;
@@ -400,5 +419,6 @@ textarea {
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }
-  .time-divider { font-size: 1.5rem; margin-top: 18px; }
+  .time-divider { font-size: 1.2rem; margin-bottom: 10px; }
+  .weekday-row { font-size: .78rem; gap: 4px; }
 }

@@ -300,9 +300,19 @@ function renderCalendar() {
 }
 
 function bindEvents() {
-  $("#open-settings").addEventListener("click", () => { renderForm(); els.modal.classList.remove("hidden"); });
-  $("#close-settings").addEventListener("click", () => els.modal.classList.add("hidden"));
-  $("#cancel-settings").addEventListener("click", () => els.modal.classList.add("hidden"));
+  $("#open-settings").addEventListener("click", () => {
+    renderForm();
+    els.modal.classList.remove("hidden");
+    document.body.classList.add("modal-open");
+  });
+  $("#close-settings").addEventListener("click", () => {
+    els.modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  });
+  $("#cancel-settings").addEventListener("click", () => {
+    els.modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
+  });
   $("#save-settings").addEventListener("click", () => {
     settings.monthlySalary = Math.max(0, Number(els.salaryInput.value || 0));
     settings.autoHolidayCN = els.holidayToggle.checked;
@@ -311,6 +321,7 @@ function bindEvents() {
     settings.mode = document.querySelector('input[name="mode"]:checked').value;
     saveSettings();
     els.modal.classList.add("hidden");
+    document.body.classList.remove("modal-open");
     renderMain();
   });
 
@@ -328,11 +339,6 @@ function bindEvents() {
   $("#clear-manual").addEventListener("click", () => {
     const y = calendarCursor.getFullYear(), m = calendarCursor.getMonth();
     for (let d = 1; d <= daysInMonth(y, m); d++) delete settings.manualSchedule[formatYMD(new Date(y, m, d))];
-    renderCalendar();
-  });
-  $("#fill-manual").addEventListener("click", () => {
-    const y = calendarCursor.getFullYear(), m = calendarCursor.getMonth();
-    for (let d = 1; d <= daysInMonth(y, m); d++) settings.manualSchedule[formatYMD(new Date(y, m, d))] = true;
     renderCalendar();
   });
   $("#copy-standard").addEventListener("click", () => {
