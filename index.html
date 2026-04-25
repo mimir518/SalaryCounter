@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1b1b1b" />
+    <meta name="description" content="上班回血器：复古小票风工资实时计算工具" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+    <title>上班回血器</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="receipt" aria-label="上班回血器主界面">
+        <header class="receipt-top">
+          <div>
+            <h1>上班回血器</h1>
+            <p class="subtitle">打工人今日回血记录</p>
+          </div>
+          <button id="open-settings" class="ticket-btn" type="button">回血规则</button>
+        </header>
+
+        <hr class="dash" />
+
+        <section class="today-section">
+          <p class="label">〈 今日已赚 〉</p>
+          <p id="today-earned" class="amount">￥0.00</p>
+          <p id="status-text" class="status">还没开赚，等上班时间开始回血</p>
+        </section>
+
+        <hr class="dash" />
+
+        <section class="progress-section">
+          <div class="line-between">
+            <p id="today-progress-text" class="progress-title">今日进度 0%</p>
+            <p id="work-hours-text" class="work-hours">09:00 上班 — 18:00 下班</p>
+          </div>
+          <div id="progress-blocks" class="blocks" aria-hidden="true"></div>
+        </section>
+
+        <section class="card-row">
+          <article class="mini-card">
+            <h2>本月累计</h2>
+            <p id="month-earned" class="mini-value">￥0.00</p>
+            <p id="month-days" class="mini-note">已计入 0 个工作日</p>
+          </article>
+          <article class="mini-card">
+            <h2>本周打工进度</h2>
+            <p id="week-progress" class="mini-value">0%</p>
+            <p class="mini-note">离周末又近了一点</p>
+          </article>
+        </section>
+
+        <hr class="dash" />
+
+        <section class="quote-section">
+          <p id="daily-quote" class="quote">今天也不是白干。</p>
+        </section>
+
+        <div class="barcode" aria-hidden="true"></div>
+        <p class="barcode-text">WORK HARD · EARN MONEY · FEEL BETTER</p>
+      </section>
+    </main>
+
+    <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+      <div class="sheet">
+        <div class="sheet-handle" aria-hidden="true"></div>
+        <button id="close-settings" class="close-btn" type="button">×</button>
+        <h2 id="settings-title">回血规则设置</h2>
+        <p class="sheet-subtitle">设置你的上班规则，开始精准回血</p>
+
+        <div class="form-section">
+          <h3>收入设置</h3>
+          <label for="salary-input">月到手工资</label>
+          <input id="salary-input" type="number" min="0" step="0.01" placeholder="25000" />
+          <p class="tip">税后实际到手的月收入</p>
+        </div>
+
+        <div class="form-section">
+          <h3>上班规则</h3>
+          <p class="label-small">上班规则模式</p>
+          <label class="radio-row"><input type="radio" name="mode" value="standard" checked /> 标准工作日</label>
+          <p class="tip">周一至周五上班，法定节假日自动排除，调休上班日自动计入</p>
+          <label class="radio-row"><input type="radio" name="mode" value="manual" /> 手动排班</label>
+          <p class="tip">按日期自定义本月上班和休息</p>
+        </div>
+
+        <div id="holiday-section" class="form-section">
+          <h3>法定节假日处理</h3>
+          <label class="switch-row" for="holiday-toggle">
+            <span>自动排除中国法定节假日</span>
+            <input id="holiday-toggle" type="checkbox" checked />
+          </label>
+          <p class="tip">开启后，中国法定节假日视为休息日；调休上班日视为工作日。</p>
+        </div>
+
+        <div class="form-section">
+          <h3>时间设置</h3>
+          <div class="time-grid">
+            <label>上班时间<input id="start-time" type="time" value="09:00" /></label>
+            <label>下班时间<input id="end-time" type="time" value="18:00" /></label>
+          </div>
+          <p class="tip">不设置午休，计薪时长 = 下班时间 - 上班时间</p>
+        </div>
+
+        <div id="manual-section" class="form-section hidden">
+          <h3>本月排班</h3>
+          <div class="calendar-nav">
+            <button id="prev-month" type="button">上个月</button>
+            <strong id="calendar-title"></strong>
+            <button id="next-month" type="button">下个月</button>
+          </div>
+          <div id="calendar" class="calendar-grid"></div>
+          <p id="manual-count" class="tip">本月已选择 0 个上班日</p>
+          <div class="calendar-actions">
+            <button id="clear-manual" type="button">清空排班</button>
+            <button id="fill-manual" type="button">全设为上班日</button>
+            <button id="copy-standard" type="button">复制标准工作日</button>
+          </div>
+        </div>
+
+        <button id="save-settings" class="save-btn" type="button">保存设置</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
