@@ -1,0 +1,18 @@
+{
+  "name": "上班回血器",
+  "short_name": "回血器",
+  "description": "复古小票风上班回血计算工具",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#171717",
+  "theme_color": "#1b1b1b",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192'%3E%3Crect width='192' height='192' fill='%23f0eadf'/%3E%3Ctext x='96' y='112' font-size='76' text-anchor='middle' fill='%23111'%3E%E5%B7%A5%3C/text%3E%3C/svg%3E",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
