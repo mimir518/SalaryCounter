@@ -67,7 +67,12 @@
             </h2>
             <p id="week-progress" class="mini-value ink-rough">0%</p>
             <p id="week-note" class="mini-note ink-rough">离周末又近了一点</p>
-            <span class="mini-horse" aria-hidden="true">🐎</span>
+            <span class="mini-horse" aria-hidden="true">
+              <svg viewBox="0 0 32 24" role="img">
+                <path d="M5 15l2-4 4-2 2-3 3 1 2 2 3 1 3 3-1 2-3 1-2 2H9z" />
+                <path d="M10 15l-1 5M19 15l1 5M24 14l2 5M14 8l2 2M22 10l3-2" />
+              </svg>
+            </span>
           </article>
         </section>
 
@@ -92,32 +97,36 @@
         <p class="sheet-subtitle">设置你的上班规则，开始精准回血</p>
 
         <div class="form-section">
-          <h3>收入设置</h3>
+          <h3>1. 收入设置</h3>
           <label for="salary-input">月到手工资</label>
           <input id="salary-input" type="number" min="0" step="0.01" placeholder="25000" />
           <p class="tip">税后实际到手的月收入</p>
         </div>
 
         <div class="form-section">
-          <h3>上班规则</h3>
+          <h3>2. 上班规则</h3>
           <p class="label-small">上班规则模式</p>
-          <label class="radio-row"><input type="radio" name="mode" value="standard" checked /> 标准工作日</label>
-          <p class="tip">周一至周五上班，法定节假日自动排除，调休上班日自动计入</p>
-          <label class="radio-row"><input type="radio" name="mode" value="manual" /> 手动排班</label>
-          <p class="tip">按日期自定义本月上班和休息</p>
+          <div class="mode-box">
+            <label class="mode-option"><input type="radio" name="mode" value="standard" checked />
+              <span><strong>标准工作日（默认）</strong><small>周一至周五上班，法定节假日自动排除，调休上班日自动计入</small></span><em>›</em>
+            </label>
+            <label class="mode-option"><input type="radio" name="mode" value="manual" />
+              <span><strong>手动排班</strong><small>按日期自定义本月上班和休息</small></span><em>›</em>
+            </label>
+          </div>
         </div>
 
         <div id="holiday-section" class="form-section">
           <h3>法定节假日处理</h3>
           <label class="switch-row" for="holiday-toggle">
             <span>自动排除中国法定节假日</span>
-            <input id="holiday-toggle" type="checkbox" checked />
+            <span class="switch"><input id="holiday-toggle" type="checkbox" checked /><i></i></span>
           </label>
           <p class="tip">开启后，中国法定节假日视为休息日；调休上班日视为工作日。</p>
         </div>
 
         <div class="form-section">
-          <h3>时间设置</h3>
+          <h3>3. 时间设置</h3>
           <div class="time-grid">
             <label>上班时间<input id="start-time" type="time" value="09:00" /></label>
             <label>下班时间<input id="end-time" type="time" value="18:00" /></label>
@@ -133,7 +142,7 @@
         </div>
 
         <div id="manual-section" class="form-section hidden">
-          <h3>本月排班</h3>
+          <h3>4. 本月排班</h3>
           <div class="calendar-nav">
             <button id="prev-month" type="button">上个月</button>
             <strong id="calendar-title"></strong>
@@ -149,6 +158,7 @@
         </div>
 
         <button id="save-settings" class="save-btn" type="button">保存设置</button>
+        <button id="cancel-settings" class="cancel-btn" type="button">取消并关闭</button>
       </div>
     </div>
 

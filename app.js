@@ -277,6 +277,7 @@ function renderCalendar() {
 function bindEvents() {
   $("#open-settings").addEventListener("click", () => { renderForm(); els.modal.classList.remove("hidden"); });
   $("#close-settings").addEventListener("click", () => els.modal.classList.add("hidden"));
+  $("#cancel-settings").addEventListener("click", () => els.modal.classList.add("hidden"));
   $("#save-settings").addEventListener("click", () => {
     settings.monthlySalary = Math.max(0, Number(els.salaryInput.value || 0));
     settings.autoHolidayCN = els.holidayToggle.checked;
