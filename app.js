@@ -57,6 +57,7 @@ const els = {
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
   monthAmount: $("#month-amount"),
   monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
+  weekNote: $("#week-note"),
   modal: $("#settings-modal"), salaryInput: $("#salary-input"), holidayToggle: $("#holiday-toggle"),
   startTime: $("#start-time"), endTime: $("#end-time"), holidaySection: $("#holiday-section"),
   quotesInput: $("#quotes-input"),
@@ -219,9 +220,10 @@ function renderMain() {
   els.status.textContent = data.status;
   els.todayProgressText.textContent = `今日进度 ${Math.round(data.todayPct * 100)}%`;
   els.workHoursText.textContent = `${settings.startTime} 上班 — ${settings.endTime} 下班`;
-  els.monthAmount.textContent = Number(data.monthTotal || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  els.monthAmount.textContent = Math.floor(Number(data.monthTotal || 0)).toLocaleString("en-US", { maximumFractionDigits: 0 });
   els.monthDays.textContent = `已计入 ${data.monthCompletedDays} 个工作日`;
   els.weekProgress.textContent = `${Math.round(data.weekPct * 100)}%`;
+  els.weekNote.textContent = data.weekPct >= 1 ? "终于可以好好休息啦！" : "离周末又近了一点";
   renderProgressBlocks(data.todayPct);
 
   const day = now.getDate();
