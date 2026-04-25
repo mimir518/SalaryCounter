@@ -369,18 +369,51 @@ textarea {
   margin: 0;
 }
 
-.calendar-nav, .calendar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
-.calendar-actions { margin-top: 12px; }
-.calendar-nav { justify-content: space-between; }
-.calendar-actions button {
-  border: none;
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
-  color: #1e1e1e;
-  font-size: .9rem;
-  text-decoration: underline;
+.calendar-nav, .calendar-actions { margin-bottom: 8px; }
+.calendar-nav {
+  display: grid;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: 8px;
 }
+.calendar-nav strong {
+  text-align: center;
+  letter-spacing: .5px;
+  font-size: .98rem;
+}
+.calendar-nav button {
+  border: 1px solid #3f3f3f;
+  background: transparent;
+  border-radius: 6px;
+  width: 36px;
+  height: 32px;
+  padding: 0;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+.action-title {
+  margin: 12px 0 8px;
+  font-size: .88rem;
+  color: #2f2f2f;
+  letter-spacing: .5px;
+}
+.calendar-actions {
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.quick-btn {
+  width: 100%;
+  padding: 8px 6px;
+  border-radius: 6px;
+  background: transparent;
+  color: #1a1a1a;
+  font-size: .88rem;
+  line-height: 1.2;
+}
+.quick-btn.primary { border: 1.5px solid #2d2d2d; }
+.quick-btn.secondary { border: 1.2px dashed #676767; }
 .weekday-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -401,16 +434,9 @@ textarea {
 .day-cell.work { background: #111; color: #f4efe5; border-style: solid; }
 .day-cell.dim { opacity: .45; }
 
-.calendar-actions button, .calendar-nav button {
-  border: 1px solid #444;
-  background: transparent;
-  border-radius: 8px;
-  padding: 6px 8px;
-}
-
 .save-btn {
   width: 100%;
-  margin-top: 14px;
+  margin-top: 20px;
   border: none;
   background: #1a1a1a;
   color: #fff;
@@ -435,5 +461,9 @@ textarea {
   .time-item { width: 41%; }
   .time-divider { font-size: 1.1rem; width: 12px; height: 38px; }
   .weekday-row { font-size: .78rem; gap: 4px; }
-  .calendar-actions button { font-size: .84rem; }
+  .calendar-nav { grid-template-columns: 32px 1fr 32px; }
+  .calendar-nav button { width: 32px; height: 28px; font-size: 1.2rem; }
+  .action-title { font-size: .8rem; margin-top: 10px; }
+  .calendar-actions { gap: 8px; }
+  .quick-btn { font-size: .8rem; padding: 7px 5px; }
 }

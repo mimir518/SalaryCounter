@@ -132,18 +132,19 @@
         <div id="manual-section" class="form-section hidden">
           <h3>4. 本月排班</h3>
           <div class="calendar-nav">
-            <button id="prev-month" type="button">上个月</button>
+            <button id="prev-month" type="button" aria-label="上个月">‹</button>
             <strong id="calendar-title"></strong>
-            <button id="next-month" type="button">下个月</button>
+            <button id="next-month" type="button" aria-label="下个月">›</button>
           </div>
           <div class="weekday-row" aria-hidden="true">
             <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
           </div>
           <div id="calendar" class="calendar-grid"></div>
           <p id="manual-count" class="tip">本月已选择 0 个上班日</p>
+          <p class="action-title">快捷操作</p>
           <div class="calendar-actions">
-            <button id="clear-manual" type="button">清空排班</button>
-            <button id="copy-standard" type="button">复制标准工作日</button>
+            <button id="copy-standard" class="quick-btn primary" type="button">套用标准工作日</button>
+            <button id="clear-manual" class="quick-btn secondary" type="button">清空本月排班</button>
           </div>
         </div>
 
