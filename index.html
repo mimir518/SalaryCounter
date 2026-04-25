@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1e1b18" />
+    <title>Salary Counter 小票版</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="receipt" aria-live="polite">
+        <div class="tear tear-top" aria-hidden="true"></div>
+
+        <button id="openSheetBtn" class="rule-btn" type="button">规则 / 回血规则</button>
+
+        <header class="title-block">
+          <p class="brand">SALARY COUNTER</p>
+          <h1>今日回血进度</h1>
+          <p class="date" id="todayText">--</p>
+        </header>
+
+        <section class="amount-block">
+          <p class="label">今日已赚</p>
+          <p class="money" id="todayEarned">¥0.00</p>
+          <p class="sub">每秒回血：<span id="perSecond">¥0.0000</span></p>
+        </section>
+
+        <section class="progress-block">
+          <div class="progress-head">
+            <span>今日进度</span>
+            <span id="todayPercent">0%</span>
+          </div>
+          <div class="grid-progress" id="todayGrid" aria-label="今日进度条"></div>
+          <p class="status-text" id="statusText">等待配置</p>
+        </section>
+
+        <section class="cards">
+          <article class="card">
+            <p>本月累计</p>
+            <p class="card-value" id="monthEarned">¥0.00</p>
+          </article>
+          <article class="card">
+            <p>本周打工进度</p>
+            <p class="card-value" id="weekPercent">0%</p>
+          </article>
+        </section>
+
+        <footer class="footer">
+          <p id="rotatingLine">打工是为了更体面地躺平。</p>
+          <div class="barcode" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </footer>
+
+        <div class="tear tear-bottom" aria-hidden="true"></div>
+      </section>
+    </main>
+
+    <aside id="sheet" class="sheet" aria-hidden="true">
+      <div class="sheet-panel" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+        <div class="sheet-grabber" aria-hidden="true"></div>
+        <h2 id="sheetTitle">规则设置</h2>
+
+        <label class="field">
+          <span>月工资（税前）</span>
+          <input id="salaryInput" type="number" min="0" step="100" />
+        </label>
+
+        <div class="field">
+          <span>模式</span>
+          <div class="mode-row">
+            <label><input type="radio" name="mode" value="standard" checked />标准工作日</label>
+            <label><input type="radio" name="mode" value="manual" />手动排班</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <span>上下班时间</span>
+          <div class="time-row">
+            <input id="startInput" type="time" />
+            <span>-</span>
+            <input id="endInput" type="time" />
+          </div>
+        </div>
+
+        <label class="field checkbox">
+          <input id="holidayToggle" type="checkbox" />
+          <span>启用法定节假日/调休覆盖（2025/2026）</span>
+        </label>
+
+        <section id="calendarSection" class="calendar-section hidden">
+          <div class="calendar-head">
+            <button type="button" id="prevMonth">‹</button>
+            <h3 id="calendarTitle">--</h3>
+            <button type="button" id="nextMonth">›</button>
+          </div>
+          <div class="calendar-actions">
+            <button type="button" id="clearMonth">清空</button>
+            <button type="button" id="fillMonth">全上班</button>
+            <button type="button" id="copyStandard">复制标准工作日</button>
+          </div>
+          <div class="weekdays"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+          <div id="calendarGrid" class="calendar-grid"></div>
+        </section>
+
+        <div class="sheet-actions">
+          <button type="button" id="cancelBtn">取消</button>
+          <button type="button" id="saveBtn">保存</button>
+        </div>
+      </div>
+    </aside>
+
+    <script src="app.js"></script>
+  </body>
+</html>
