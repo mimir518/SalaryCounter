@@ -179,18 +179,10 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   position: absolute;
   right: 12px;
   bottom: 30px;
-  width: 38px;
-  height: 28px;
-  opacity: .95;
-}
-.mini-horse svg {
-  width: 100%;
-  height: 100%;
-  stroke: #1a1a1a;
-  stroke-width: 1.8;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #151515;
+  opacity: .9;
 }
 .quote {
   text-align: center;
@@ -348,13 +340,15 @@ textarea {
 .switch-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .time-row {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   gap: 6px;
 }
 .time-item {
   width: 42%;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 .time-item input {
   height: 38px;
@@ -365,9 +359,12 @@ textarea {
 .time-divider {
   width: 14px;
   font-size: 1.25rem;
-  line-height: 38px;
+  height: 38px;
   text-align: center;
-  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
   color: #1a1a1a;
   margin: 0;
 }
@@ -375,6 +372,15 @@ textarea {
 .calendar-nav, .calendar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
 .calendar-actions { margin-top: 12px; }
 .calendar-nav { justify-content: space-between; }
+.calendar-actions button {
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  color: #1e1e1e;
+  font-size: .9rem;
+  text-decoration: underline;
+}
 .weekday-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -422,11 +428,12 @@ textarea {
   .status { font-size: .82rem; }
   .mini-note { font-size: .8rem; }
   .mini-value { font-size: 1.25rem; }
-  .mini-horse { bottom: 28px; width: 32px; height: 24px; right: 8px; }
+  .mini-horse { bottom: 28px; font-size: 1.35rem; right: 8px; }
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }
   .time-item { width: 41%; }
-  .time-divider { font-size: 1.1rem; line-height: 38px; width: 12px; }
+  .time-divider { font-size: 1.1rem; width: 12px; height: 38px; }
   .weekday-row { font-size: .78rem; gap: 4px; }
+  .calendar-actions button { font-size: .84rem; }
 }

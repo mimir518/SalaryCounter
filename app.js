@@ -39,7 +39,7 @@ const CN_HOLIDAY_DATA = {
 
 const defaultSettings = {
   version: 1,
-  monthlySalary: 25000,
+  monthlySalary: 10000,
   mode: "standard",
   startTime: "09:00",
   endTime: "18:00",
