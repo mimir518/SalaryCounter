@@ -175,14 +175,45 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   margin-right: 0.08em;
 }
 .mini-note { margin: auto 0 0; color: #2f2f2f; font-size: .86rem; }
-.mini-horse {
+.mini-stamp {
   position: absolute;
-  right: 12px;
-  bottom: 30px;
-  font-size: 1.6rem;
-  line-height: 1;
-  color: #151515;
+  right: 8px;
+  bottom: 26px;
+  width: 48px;
+  height: 48px;
+  border: 2px dashed #2a2a2a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1b1b1b;
+  background: rgba(255,255,255,.5);
   opacity: .9;
+}
+.mini-stamp::before {
+  content: "WORK HORSE";
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.mini-stamp::after {
+  content: "WEEK PASS";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 6px;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+.horse-mark {
+  font-size: 1rem;
+  line-height: 1;
+  transform: translateY(-1px);
 }
 .quote {
   text-align: center;
@@ -431,6 +462,10 @@ textarea {
   background: #ece8df;
   font-size: 0.9rem;
 }
+.day-cell.empty {
+  border: none;
+  background: transparent;
+}
 .day-cell.work { background: #111; color: #f4efe5; border-style: solid; }
 .day-cell.dim { opacity: .45; }
 
@@ -454,7 +489,9 @@ textarea {
   .status { font-size: .82rem; }
   .mini-note { font-size: .8rem; }
   .mini-value { font-size: 1.25rem; }
-  .mini-horse { bottom: 28px; font-size: 1.35rem; right: 8px; }
+  .mini-stamp { width: 42px; height: 42px; right: 6px; bottom: 24px; }
+  .mini-stamp::before, .mini-stamp::after { font-size: 5px; }
+  .horse-mark { font-size: .9rem; }
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }

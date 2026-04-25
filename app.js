@@ -275,6 +275,14 @@ function renderCalendar() {
   els.calendarTitle.textContent = `${year} 年 ${month + 1} 月`;
   els.calendar.innerHTML = "";
   let selected = 0;
+  const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7; // Monday=0
+
+  for (let i = 0; i < firstWeekday; i++) {
+    const placeholder = document.createElement("div");
+    placeholder.className = "day-cell empty";
+    placeholder.setAttribute("aria-hidden", "true");
+    els.calendar.appendChild(placeholder);
+  }
 
   for (let i = 1; i <= total; i++) {
     const d = new Date(year, month, i);
