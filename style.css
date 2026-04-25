@@ -344,29 +344,36 @@ textarea {
 }
 .radio-row { display: block; }
 .tip { margin: 4px 0 0; color: #4d4d4d; font-size: .9rem; }
+#manual-count { margin-top: 8px; }
 .switch-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .time-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr);
-  align-items: end;
-  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.time-item {
+  width: 42%;
+  min-width: 0;
 }
 .time-item input {
-  height: 40px;
+  height: 38px;
   text-align: center;
-  font-size: .98rem;
-  padding: 6px 4px;
+  font-size: .92rem;
+  padding: 6px 2px;
 }
 .time-divider {
-  font-size: 1.35rem;
-  line-height: 1;
+  width: 14px;
+  font-size: 1.25rem;
+  line-height: 38px;
   text-align: center;
-  align-self: end;
+  align-self: center;
   color: #1a1a1a;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .calendar-nav, .calendar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+.calendar-actions { margin-top: 12px; }
 .calendar-nav { justify-content: space-between; }
 .weekday-row {
   display: grid;
@@ -419,6 +426,7 @@ textarea {
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }
-  .time-divider { font-size: 1.2rem; margin-bottom: 10px; }
+  .time-item { width: 41%; }
+  .time-divider { font-size: 1.1rem; line-height: 38px; width: 12px; }
   .weekday-row { font-size: .78rem; gap: 4px; }
 }

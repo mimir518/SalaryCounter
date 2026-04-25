@@ -243,7 +243,7 @@ function renderMain() {
   els.amountDec.textContent = `.${today.decPart}`;
   els.status.textContent = data.status;
   els.todayProgressPercent.textContent = `${Math.round(data.todayPct * 100)}%`;
-  els.workHoursText.textContent = `${settings.startTime} 上班 — ${settings.endTime} 下班`;
+  els.workHoursText.textContent = `${settings.startTime} - ${settings.endTime}`;
   els.monthAmount.textContent = Math.floor(Number(data.monthTotal || 0)).toLocaleString("en-US", { maximumFractionDigits: 0 });
   els.monthDays.textContent = `已计入 ${data.monthCompletedDays} 个工作日`;
   els.weekProgress.textContent = `${Math.round(data.weekPct * 100)}%`;
