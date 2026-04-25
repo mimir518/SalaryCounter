@@ -43,6 +43,7 @@ const defaultSettings = {
   startTime: "09:00",
   endTime: "18:00",
   autoHolidayCN: true,
+  customQuotes: [],
   manualSchedule: {},
 };
 
@@ -57,6 +58,7 @@ const els = {
   monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
   modal: $("#settings-modal"), salaryInput: $("#salary-input"), holidayToggle: $("#holiday-toggle"),
   startTime: $("#start-time"), endTime: $("#end-time"), holidaySection: $("#holiday-section"),
+  quotesInput: $("#quotes-input"),
   manualSection: $("#manual-section"), calendar: $("#calendar"), calendarTitle: $("#calendar-title"), manualCount: $("#manual-count"),
 };
 
@@ -222,7 +224,8 @@ function renderMain() {
   renderProgressBlocks(data.todayPct);
 
   const day = now.getDate();
-  els.dailyQuote.textContent = QUOTES[day % QUOTES.length];
+  const activeQuotes = Array.isArray(settings.customQuotes) && settings.customQuotes.length > 0 ? settings.customQuotes : QUOTES;
+  els.dailyQuote.textContent = activeQuotes[day % activeQuotes.length];
 }
 
 function renderForm() {
@@ -230,6 +233,7 @@ function renderForm() {
   els.holidayToggle.checked = settings.autoHolidayCN;
   els.startTime.value = settings.startTime;
   els.endTime.value = settings.endTime;
+  els.quotesInput.value = Array.isArray(settings.customQuotes) ? settings.customQuotes.join("\n") : "";
   document.querySelector(`input[name="mode"][value="${settings.mode}"]`).checked = true;
   els.manualSection.classList.toggle("hidden", settings.mode !== "manual");
   els.holidaySection.classList.toggle("hidden", settings.mode !== "standard");
@@ -275,6 +279,10 @@ function bindEvents() {
     settings.autoHolidayCN = els.holidayToggle.checked;
     settings.startTime = els.startTime.value || "09:00";
     settings.endTime = els.endTime.value || "18:00";
+    settings.customQuotes = (els.quotesInput.value || "")
+      .split("\n")
+      .map((s) => s.trim())
+      .filter(Boolean);
     settings.mode = document.querySelector('input[name="mode"]:checked').value;
     saveSettings();
     els.modal.classList.add("hidden");
