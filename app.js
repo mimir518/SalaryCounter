@@ -53,7 +53,7 @@ let calendarCursor = new Date();
 const $ = (s) => document.querySelector(s);
 const els = {
   amountInt: $("#amount-int"), amountDec: $("#amount-dec"), status: $("#status-text"),
-  todayProgressText: $("#today-progress-text"), workHoursText: $("#work-hours-text"),
+  todayProgressPercent: $("#today-progress-percent"), workHoursText: $("#work-hours-text"),
   progressBlocks: $("#progress-blocks"), monthEarned: $("#month-earned"),
   monthAmount: $("#month-amount"),
   monthDays: $("#month-days"), weekProgress: $("#week-progress"), dailyQuote: $("#daily-quote"),
@@ -218,7 +218,7 @@ function renderMain() {
   els.amountInt.textContent = today.intPart;
   els.amountDec.textContent = `.${today.decPart}`;
   els.status.textContent = data.status;
-  els.todayProgressText.textContent = `今日进度 ${Math.round(data.todayPct * 100)}%`;
+  els.todayProgressPercent.textContent = `${Math.round(data.todayPct * 100)}%`;
   els.workHoursText.textContent = `${settings.startTime} 上班 — ${settings.endTime} 下班`;
   els.monthAmount.textContent = Math.floor(Number(data.monthTotal || 0)).toLocaleString("en-US", { maximumFractionDigits: 0 });
   els.monthDays.textContent = `已计入 ${data.monthCompletedDays} 个工作日`;

@@ -80,7 +80,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   text-align: center;
   margin: 4px 0;
   font-weight: 900;
-  font-size: clamp(3.4rem, 16.4vw, 7rem);
+  font-size: clamp(3.9rem, 18.2vw, 7.8rem);
   letter-spacing: 1px;
   font-family: "Courier New", "Consolas", monospace;
   line-height: 1;
@@ -100,7 +100,8 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 
 .status { text-align: center; margin: 8px 0 0; font-size: .9rem; font-weight: 400; }
 .line-between { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
-.progress-title { margin: 0; font-size: var(--font-progress-title); font-weight: 800; }
+.progress-title { margin: 0; font-size: var(--font-progress-title); font-weight: 400; }
+.progress-percent { font-size: 1.55em; font-weight: 700; letter-spacing: .4px; }
 .work-hours { margin: 0; font-size: .95rem; color: #2f2f2f; }
 
 .blocks { margin-top: 10px; display: grid; gap: 4px; grid-template-columns: repeat(24, minmax(0, 1fr)); }
@@ -117,8 +118,9 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .mini-card {
   border: 2px dashed #4a4a4a;
   border-radius: 14px;
-  padding: 12px;
-  height: 176px;
+  padding: 10px 10px 9px;
+  height: 154px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -148,7 +150,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   stroke-linejoin: round;
 }
 .mini-value {
-  margin: 8px 0;
+  margin: 4px 0;
   font-size: 1.55rem;
   line-height: 1;
   font-family: "Courier New", monospace;
@@ -161,6 +163,14 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   margin-right: 0.08em;
 }
 .mini-note { margin: auto 0 0; color: #2f2f2f; font-size: .86rem; }
+.mini-horse {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: 1.55rem;
+  line-height: 1;
+  filter: grayscale(1) contrast(1.05);
+}
 .quote {
   text-align: center;
   font-size: var(--font-card-title);
@@ -171,7 +181,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   margin: 0;
   text-align: center;
   color: #2f2f2f;
-  font-size: var(--font-work-hours);
+  font-size: .8rem;
   font-weight: 400;
 }
 
@@ -280,9 +290,11 @@ textarea {
 @media (max-width: 390px) {
   h1 { font-size: 1.8rem; }
   .subtitle { font-size: 0.88rem; }
-  .work-hours, .progress-title, .mini-card h2 { font-size: 1rem; }
+  .work-hours, .progress-title, .mini-card h2 { font-size: .92rem; }
+  .progress-percent { font-size: 1.45em; }
   .status { font-size: .82rem; }
   .mini-note { font-size: .8rem; }
-  .mini-value { font-size: 1.35rem; }
-  .quote, .quote-sub { font-size: 1rem; }
+  .mini-value { font-size: 1.25rem; }
+  .quote { font-size: .96rem; }
+  .quote-sub { font-size: .72rem; }
 }
