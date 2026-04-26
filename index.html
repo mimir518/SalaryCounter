@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>上班回血器</title>
+    <meta name="description" content="复古小票风工资回血计算器（PWA）" />
+    <meta name="theme-color" content="#f6f1e7" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app" aria-live="polite">
+      <header class="brand">
+        <p class="kicker">WORK RECOVERY TICKET</p>
+        <h1>上班回血器</h1>
+      </header>
+
+      <section class="panel inputs">
+        <label>
+          <span>月薪（税前）</span>
+          <input id="monthlySalary" type="number" min="0" step="100" inputmode="decimal" placeholder="例如 12000" />
+        </label>
+
+        <label>
+          <span>今日上班时长（小时）</span>
+          <input id="workHours" type="number" min="0" max="24" step="0.5" inputmode="decimal" placeholder="例如 8" />
+        </label>
+
+        <label>
+          <span>每月工作天数</span>
+          <input id="workDays" type="number" min="1" max="31" step="1" inputmode="numeric" value="21.75" />
+        </label>
+      </section>
+
+      <section class="panel receipt">
+        <p>本次回血金额</p>
+        <output id="result">¥0.00</output>
+        <small id="breakdown">请输入数据开始计算</small>
+      </section>
+
+      <footer class="tips">
+        <button id="calcBtn" type="button">计算回血</button>
+        <p>离发财还远，但离下班更近了。</p>
+      </footer>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

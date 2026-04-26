@@ -1,0 +1,109 @@
+:root {
+  --paper: #f6f1e7;
+  --ink: #2c2418;
+  --line: #d8cfbf;
+  --accent: #8a5a3c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "SF Mono", "JetBrains Mono", "Cascadia Code", "Courier New", monospace;
+  background: radial-gradient(circle at top, #fffaf2, #ece3d3 60%);
+  color: var(--ink);
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 20px 14px;
+}
+
+.app {
+  width: min(100%, 420px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 14px 16px;
+  box-shadow: 0 12px 32px rgba(44, 36, 24, 0.15);
+  position: relative;
+}
+
+.app::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -12px;
+  height: 12px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent 0 6px,
+    var(--paper) 6px 12px
+  );
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.04em;
+}
+
+.kicker {
+  margin: 0 0 8px;
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.panel {
+  border-top: 1px dashed var(--line);
+  margin-top: 14px;
+  padding-top: 14px;
+}
+
+.inputs label {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+}
+
+input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffaf2;
+  color: var(--ink);
+  padding: 10px;
+  font: inherit;
+}
+
+.receipt p,
+.receipt small {
+  margin: 0;
+  opacity: 0.76;
+}
+
+output {
+  margin: 10px 0 6px;
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+button {
+  width: 100%;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: 10px;
+  padding: 12px;
+  font: inherit;
+  font-weight: 700;
+}
+
+.tips p {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 0.82rem;
+  opacity: 0.72;
+}
