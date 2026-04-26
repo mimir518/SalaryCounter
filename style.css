@@ -72,14 +72,14 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .amount {
   text-align: center;
   margin: 4px 0;
-  font-weight: 900;
+  font-weight: 800;
   font-size: clamp(4.25rem, 19.6vw, 8.2rem);
   letter-spacing: 0;
-  font-family: "Courier New", "Lucida Console", monospace;
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
   line-height: 1;
 }
 .currency { font-size: 0.42em; display: inline-block; margin-right: 0.1em; vertical-align: baseline; }
-#amount-int { font-size: 1em; letter-spacing: -0.01em; }
+#amount-int { font-size: 1em; letter-spacing: -0.02em; }
 #amount-dec { font-size: 0.56em; margin-left: 0.02em; vertical-align: baseline; }
 .status { text-align: center; margin: 8px 0 0; font-size: .9rem; font-weight: 400; }
 
