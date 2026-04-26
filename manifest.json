@@ -1,10 +1,11 @@
 {
   "name": "上班回血器",
   "short_name": "回血器",
-  "description": "复古小票风移动端 PWA：按上班时长计算今日回血金额",
-  "start_url": ".",
+  "description": "上班回血器：复古小票风工资实时计算工具",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f1e7",
-  "theme_color": "#f6f1e7",
-  "lang": "zh-CN"
+  "background_color": "#1b1b1b",
+  "theme_color": "#1b1b1b"
 }

@@ -1,50 +1,152 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>上班回血器</title>
-    <meta name="description" content="复古小票风工资回血计算器（PWA）" />
-    <meta name="theme-color" content="#f6f1e7" />
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <main class="app" aria-live="polite">
-      <header class="brand">
-        <p class="kicker">WORK RECOVERY TICKET</p>
-        <h1>上班回血器</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1b1b1b" />
+  <meta name="description" content="上班回血器：复古小票风工资实时计算工具" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <title>上班回血器</title>
+</head>
+<body>
+  <main class="app-shell">
+    <section class="receipt" aria-label="上班回血器主界面">
+      <header class="receipt-top">
+        <div>
+          <h1 class="ink-rough">上班回血器 <span class="spark">✦</span></h1>
+          <p class="subtitle ink-rough">打工人今日也在努力回血中！</p>
+        </div>
+        <button id="open-settings" class="ticket-btn ink-rough" type="button">回血规则</button>
       </header>
 
-      <section class="panel inputs">
-        <label>
-          <span>月薪（税前）</span>
-          <input id="monthlySalary" type="number" min="0" step="100" inputmode="decimal" placeholder="例如 12000" />
-        </label>
+      <hr class="dash" />
 
-        <label>
-          <span>今日上班时长（小时）</span>
-          <input id="workHours" type="number" min="0" max="24" step="0.5" inputmode="decimal" placeholder="例如 8" />
-        </label>
-
-        <label>
-          <span>每月工作天数</span>
-          <input id="workDays" type="number" min="1" max="31" step="1" inputmode="numeric" value="21.75" />
-        </label>
+      <section class="today-section">
+        <p class="label ink-rough">〈 今日已赚 〉</p>
+        <p class="amount ink-rough"><span class="currency">￥</span><span id="amount-int">0</span><span id="amount-dec">.00</span></p>
+        <p id="status-text" class="status ink-rough">还没开赚，等上班时间开始回血</p>
       </section>
 
-      <section class="panel receipt">
-        <p>本次回血金额</p>
-        <output id="result">¥0.00</output>
-        <small id="breakdown">请输入数据开始计算</small>
+      <hr class="dash" />
+
+      <section class="progress-section">
+        <div class="line-between">
+          <p class="progress-title ink-rough">今日进度 <span id="today-progress-percent" class="progress-percent">0%</span></p>
+          <p id="work-hours-text" class="work-hours ink-rough">09:00 - 18:00</p>
+        </div>
+        <div id="progress-blocks" class="blocks" aria-hidden="true"></div>
       </section>
 
-      <footer class="tips">
-        <button id="calcBtn" type="button">计算回血</button>
-        <p>离发财还远，但离下班更近了。</p>
-      </footer>
-    </main>
+      <section class="card-row">
+        <article class="mini-card">
+          <h2 class="ink-rough">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M8 8c0-2 1.8-3 4-3s4 1 4 3" />
+                <path d="M7 10h10l1.5 4.6c.9 3-1.3 6.4-4.5 6.4h-5c-3.2 0-5.4-3.4-4.5-6.4z" />
+                <path d="M9.3 14.2h5.4" />
+              </svg>
+            </span>
+            本月累计
+          </h2>
+          <p id="month-earned" class="mini-value ink-rough"><span class="mini-currency">￥</span><span id="month-amount">0.00</span></p>
+          <p id="month-days" class="mini-note ink-rough">已计入 0 个工作日</p>
+        </article>
 
-    <script src="app.js"></script>
-  </body>
+        <article class="mini-card">
+          <h2 class="ink-rough">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" role="img">
+                <path d="M6 4v16" />
+                <path d="M7 6.2h8.8l-2.7 3.2 2.7 3.2H7z" />
+              </svg>
+            </span>
+            本周打工进度
+          </h2>
+          <p id="week-progress" class="mini-value ink-rough">0%</p>
+          <p id="week-note" class="mini-note ink-rough">离周末又近了一点</p>
+          <span class="mini-stamp" aria-hidden="true"><span class="horse-mark">♞</span></span>
+        </article>
+      </section>
+
+      <hr class="dash" />
+      <section class="quote-section">
+        <p id="daily-quote" class="quote ink-rough">今日回血中，请勿打扰。</p>
+        <p class="quote-sub ink-rough">· 打工人，打工魂，打工都是人上人 ·</p>
+      </section>
+
+      <hr class="dash" />
+      <div class="barcode" aria-hidden="true"></div>
+      <p class="barcode-text">WORK HARD · EARN MONEY · FEEL BETTER</p>
+    </section>
+  </main>
+
+  <div id="settings-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="sheet">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <button id="close-settings" class="close-btn" type="button">×</button>
+      <h2 id="settings-title">回血规则设置</h2>
+      <p class="sheet-subtitle">设置你的上班规则，开始精准回血</p>
+
+      <div class="form-section">
+        <h3>1. 收入设置</h3>
+        <label for="salary-input">月到手工资</label>
+        <input id="salary-input" type="number" min="0" step="0.01" placeholder="10000" />
+        <p class="tip">税后实际到手的月收入</p>
+      </div>
+
+      <div class="form-section">
+        <h3>2. 上班规则</h3>
+        <p class="label-small">上班规则模式</p>
+        <div class="mode-box">
+          <label class="mode-option"><input type="radio" name="mode" value="standard" checked /><span><strong>标准工作日（默认）</strong><small>周一至周五上班，法定节假日自动排除，调休上班日自动计入</small></span><em>›</em></label>
+          <label class="mode-option"><input type="radio" name="mode" value="manual" /><span><strong>手动排班</strong><small>按日期自定义本月上班和休息</small></span><em>›</em></label>
+        </div>
+      </div>
+
+      <div id="holiday-section" class="form-section">
+        <h3>法定节假日处理</h3>
+        <label class="switch-row" for="holiday-toggle">
+          <span>自动排除中国法定节假日</span>
+          <span class="switch"><input id="holiday-toggle" type="checkbox" checked /><i></i></span>
+        </label>
+        <p class="tip">开启后，中国法定节假日视为休息日；调休上班日视为工作日。</p>
+      </div>
+
+      <div class="form-section">
+        <h3>3. 时间设置</h3>
+        <div class="time-row">
+          <label class="time-item">上班时间<input id="start-time" type="time" value="09:00" /></label>
+          <span class="time-divider">-</span>
+          <label class="time-item">下班时间<input id="end-time" type="time" value="18:00" /></label>
+        </div>
+      </div>
+
+      <div id="manual-section" class="form-section hidden">
+        <h3>4. 本月排班</h3>
+        <div class="calendar-nav">
+          <button id="prev-month" type="button" aria-label="上个月">‹</button>
+          <strong id="calendar-title"></strong>
+          <button id="next-month" type="button" aria-label="下个月">›</button>
+        </div>
+
+        <div class="weekday-row" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+        <div id="calendar" class="calendar-grid"></div>
+        <p id="manual-count" class="tip">本月已选择 0 个上班日</p>
+
+        <p class="action-title">快捷操作</p>
+        <div class="calendar-actions">
+          <button id="copy-standard" class="quick-btn primary" type="button">套用标准工作日</button>
+          <button id="clear-manual" class="quick-btn secondary" type="button">清空本月排班</button>
+        </div>
+      </div>
+
+      <button id="save-settings" class="save-btn" type="button">保存设置</button>
+      <button id="cancel-settings" class="cancel-btn" type="button">取消并关闭</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
 </html>
