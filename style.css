@@ -73,8 +73,8 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   text-align: center;
   margin: 4px 0;
   font-weight: 900;
-  font-size: clamp(4.25rem, 19.6vw, 8.2rem);
-  letter-spacing: 1px;
+  font-size: clamp(3.85rem, 17.8vw, 7.4rem);
+  letter-spacing: 0.2px;
   font-family: "Courier New", "Consolas", monospace;
   line-height: 1;
 }
