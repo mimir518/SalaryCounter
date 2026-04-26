@@ -119,6 +119,15 @@ function moneyParts(v) {
   const [intPart, decPart = "00"] = text.split(".");
   return { intPart, decPart };
 }
+function parseSalaryInput(text) {
+  const normalized = String(text || "").replace(/,/g, "").trim();
+  const num = Number(normalized);
+  return Number.isFinite(num) ? Math.max(0, num) : 0;
+}
+function formatSalaryInput(value) {
+  const n = parseSalaryInput(value);
+  return n.toLocaleString("zh-CN", { maximumFractionDigits: 2 });
+}
 
 function isWeekend(date) { const d = date.getDay(); return d === 0 || d === 6; }
 function dayTypeByStandard(date) {
@@ -263,7 +272,7 @@ function renderMain() {
 }
 
 function renderForm() {
-  els.salaryInput.value = settings.monthlySalary;
+  els.salaryInput.value = formatSalaryInput(settings.monthlySalary);
   els.holidayToggle.checked = settings.autoHolidayCN;
   els.startTime.value = settings.startTime;
   els.endTime.value = settings.endTime;
@@ -329,7 +338,7 @@ function bindEvents() {
   });
 
   $("#save-settings").addEventListener("click", () => {
-    settings.monthlySalary = Math.max(0, Number(els.salaryInput.value || 0));
+    settings.monthlySalary = parseSalaryInput(els.salaryInput.value);
     settings.autoHolidayCN = els.holidayToggle.checked;
     settings.startTime = els.startTime.value || "09:00";
     settings.endTime = els.endTime.value || "18:00";
@@ -338,6 +347,13 @@ function bindEvents() {
     els.modal.classList.add("hidden");
     document.body.classList.remove("modal-open");
     renderMain();
+  });
+
+  els.salaryInput.addEventListener("focus", () => {
+    els.salaryInput.value = String(parseSalaryInput(els.salaryInput.value));
+  });
+  els.salaryInput.addEventListener("blur", () => {
+    els.salaryInput.value = formatSalaryInput(els.salaryInput.value);
   });
 
   document.querySelectorAll('input[name="mode"]').forEach((radio) => {

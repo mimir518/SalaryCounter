@@ -85,7 +85,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 
 .line-between { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
 .progress-title { margin: 0; font-size: var(--font-progress-title); font-weight: 400; }
-.progress-percent { font-size: 1.55em; font-weight: 700; letter-spacing: .4px; }
+.progress-percent { font-size: 1.55em; font-weight: 700; letter-spacing: .4px; margin-left: 8px; }
 .work-hours { margin: 0; font-size: .95rem; color: #2f2f2f; }
 .blocks { margin-top: 10px; display: grid; gap: 4px; grid-template-columns: repeat(24, minmax(0, 1fr)); }
 .block { height: 20px; border-radius: 2px; background: #d6d1c7; }
@@ -96,7 +96,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
   border: 2px dashed #4a4a4a;
   border-radius: 14px;
   padding: 9px 10px 8px;
-  height: 106px;
+  height: 122px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -107,7 +107,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .mini-card h2 { margin: 0; font-size: var(--font-card-title); font-weight: 400; display: flex; align-items: center; gap: 6px; }
 .icon { width: 1.05em; height: 1.05em; display: inline-flex; }
 .icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.mini-value { margin: 4px 0; font-size: 1.55rem; line-height: 1; font-family: "Courier New", monospace; font-weight: 900; white-space: nowrap; }
+.mini-value { margin: 4px 0; font-size: 1.72rem; line-height: 1; font-family: "Courier New", monospace; font-weight: 900; white-space: nowrap; }
 .mini-currency { font-size: 0.45em; vertical-align: baseline; margin-right: 0.08em; }
 .mini-note { margin: 2px 0 0; color: #2f2f2f; font-size: .86rem; }
 .quote { text-align: center; font-size: var(--font-card-title); margin: 4px 0 2px; font-weight: 400; }
@@ -160,7 +160,7 @@ textarea { resize: vertical; font-family: inherit; }
 .time-row { display: flex; align-items: flex-end; justify-content: center; gap: 6px; }
 .time-item { width: 42%; min-width: 0; display: flex; flex-direction: column; }
 .time-item input { height: 38px; text-align: center; font-size: .92rem; padding: 6px 2px; }
-.time-divider { width: 14px; font-size: 1.25rem; height: 38px; text-align: center; display: inline-flex; align-items: center; justify-content: center; align-self: center; transform: translateY(-2px); color: #1a1a1a; margin: 0; }
+.time-divider { width: 14px; font-size: 1.25rem; height: 38px; text-align: center; display: inline-flex; align-items: center; justify-content: center; align-self: center; transform: translateY(-1px); color: #1a1a1a; margin: 0; }
 .calendar-nav, .calendar-actions { margin-bottom: 8px; }
 .calendar-nav { display: grid; grid-template-columns: 36px 1fr 36px; align-items: center; gap: 8px; }
 .calendar-nav strong { text-align: center; letter-spacing: .5px; font-size: .98rem; }
@@ -185,12 +185,12 @@ textarea { resize: vertical; font-family: inherit; }
   .progress-percent { font-size: 1.45em; }
   .status { font-size: .82rem; }
   .mini-note { font-size: .8rem; }
-  .mini-value { font-size: 1.25rem; }
+  .mini-value { font-size: 1.38rem; }
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }
   .time-item { width: 41%; }
-  .time-divider { font-size: 1.1rem; width: 12px; height: 38px; transform: translateY(-2px); }
+  .time-divider { font-size: 1.1rem; width: 12px; height: 38px; transform: translateY(-1px); }
   .weekday-row { font-size: .78rem; gap: 4px; }
   .calendar-nav { grid-template-columns: 32px 1fr 32px; }
   .calendar-nav button { width: 32px; height: 28px; font-size: 1.2rem; }
