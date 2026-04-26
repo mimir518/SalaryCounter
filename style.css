@@ -95,8 +95,8 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .mini-card {
   border: 2px dashed #4a4a4a;
   border-radius: 14px;
-  padding: 10px 10px 9px;
-  height: 144px;
+  padding: 9px 10px 8px;
+  height: 124px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -109,15 +109,7 @@ h1 { margin: 0; font-size: 1.95rem; letter-spacing: 1.4px; font-weight: 900; }
 .icon svg { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.8; fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .mini-value { margin: 4px 0; font-size: 1.55rem; line-height: 1; font-family: "Courier New", monospace; font-weight: 900; white-space: nowrap; }
 .mini-currency { font-size: 0.45em; vertical-align: baseline; margin-right: 0.08em; }
-.mini-note { margin: auto 0 0; color: #2f2f2f; font-size: .86rem; }
-.mini-stamp {
-  position: absolute; right: 8px; bottom: 26px; width: 48px; height: 48px;
-  border: 2px dashed #2a2a2a; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  color: #1b1b1b; background: rgba(255,255,255,.5); opacity: .9;
-}
-.mini-stamp::before { content: "WORK HORSE"; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); font-size: 6px; letter-spacing: .5px; white-space: nowrap; }
-.mini-stamp::after { content: "WEEK PASS"; position: absolute; bottom: 3px; left: 50%; transform: translateX(-50%); font-size: 6px; letter-spacing: .5px; white-space: nowrap; }
-.horse-mark { font-size: 1rem; line-height: 1; transform: translateY(-1px); }
+.mini-note { margin: 2px 0 0; color: #2f2f2f; font-size: .86rem; }
 .quote { text-align: center; font-size: var(--font-card-title); margin: 4px 0 2px; font-weight: 400; }
 .quote-sub { margin: 0; text-align: center; color: #2f2f2f; font-size: .8rem; font-weight: 400; }
 .barcode { margin: 14px auto 8px; width: 95%; height: 62px; background: repeating-linear-gradient(90deg, #111 0 3px, transparent 3px 6px, #111 6px 8px, transparent 8px 11px, #111 11px 16px, transparent 16px 19px); }
@@ -194,9 +186,6 @@ textarea { resize: vertical; font-family: inherit; }
   .status { font-size: .82rem; }
   .mini-note { font-size: .8rem; }
   .mini-value { font-size: 1.25rem; }
-  .mini-stamp { width: 42px; height: 42px; right: 6px; bottom: 24px; }
-  .mini-stamp::before, .mini-stamp::after { font-size: 5px; }
-  .horse-mark { font-size: .9rem; }
   .quote { font-size: .96rem; }
   .quote-sub { font-size: .72rem; }
   .time-item input { height: 38px; font-size: .96rem; }
