@@ -113,9 +113,20 @@ function formatYMD(date) {
   return `${y}-${m}-${d}`;
 }
 function daysInMonth(y, m) { return new Date(y, m + 1, 0).getDate(); }
-function money(v) { return `￥${Number(v || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`; }
+function normalizeAsciiNumber(text) {
+  return String(text)
+    .replace(/[０-９]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xFEE0))
+    .replace(/，/g, ",")
+    .replace(/。/g, ".");
+}
+function money(v) {
+  const formatted = Number(v || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `￥${normalizeAsciiNumber(formatted)}`;
+}
 function moneyParts(v) {
-  const text = Number(v || 0).toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const text = normalizeAsciiNumber(
+    Number(v || 0).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+  );
   const [intPart, decPart = "00"] = text.split(".");
   return { intPart, decPart };
 }
